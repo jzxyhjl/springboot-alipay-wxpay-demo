@@ -12,4 +12,4 @@ base:
       appid: ${ALIPAY_APPID}
       app_private_key: ${ALIPAY_APP_PRIVATE_KEY}
       alipay_public_key: ${ALIPAY_PUBLIC_KEY}
-      notify_url: http://uat-simbaui.simbalink.cn/backend/payment/callback/alipay
+      notify_url: ${ALIPAY_NOTIFY_URL}
