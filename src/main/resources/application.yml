@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: payment-service
+  thymeleaf:
+    encoding: utf-8  #编码
+    prefix: classpath:/templates/  #前缀
+    suffix: .html  #后缀名
+    cache: false  #是否使用缓存
+
+#  servlet:
+#    multipart:
+#      max-file-size: 100MB
+#      max-request-size: 100MB
+#server:
+#  tomcat:
+#    max-swallow-size: 100MB

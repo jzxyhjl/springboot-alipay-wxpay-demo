@@ -1,0 +1,15 @@
+base:
+  payment:
+    wxpay:
+      appid: ${WECHAT_APPID}
+      appsecret: ${WECHAT_SECRET}
+      mch_id: ${WECHAT_MCH_ID}
+      apikey: ${WECHAT_APIKEY}
+      notify_url: ${WECHAT_NOTIFY_URL}
+      refund_notify_url: ${WECHAT_REFUND_NOTIFY_URL}
+      auth_callback_url: ${WECHAT_AUTH_CALLBACK_URL}
+    alipay:
+      appid: ${ALIPAY_APPID}
+      app_private_key: ${ALIPAY_APP_PRIVATE_KEY}
+      alipay_public_key: ${ALIPAY_PUBLIC_KEY}
+      notify_url: http://uat-simbaui.simbalink.cn/backend/payment/callback/alipay
