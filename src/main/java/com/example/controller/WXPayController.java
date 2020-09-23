@@ -46,7 +46,10 @@ public class WXPayController {
     @GetMapping("/jsapi/part1/url")
     @ResponseBody
     public BaseResponse<String> wxpayJSAPIPart1Url(String orderNum) throws Exception {
-        String url = WechatURLUtil.getWechatQRCodeURL(myWXPayConfig.getAppID(), SCOPE_BASE, myWXPayConfig.getAuth_callback_url(), orderNum);
+        String url = WechatURLUtil.getWechatQRCodeURL(myWXPayConfig.getAppID(),
+                                                    SCOPE_BASE,
+                                            WechatURLUtil.BASE_HOST + myWXPayConfig.getAuth_callback_url(),
+                                                    orderNum);
         return BaseResponse.<String>builder().data(url).build();
     }
 

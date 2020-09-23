@@ -10,6 +10,7 @@ import com.example.exception.PaymentException;
 import com.example.servcie.WXPayService;
 import com.example.utils.BeanMapUtil;
 import com.example.utils.JSONUtil;
+import com.example.utils.PaymentRequestUtil;
 import com.example.utils.WechatURLUtil;
 import com.example.utils.httpclient.HttpClient;
 import com.example.utils.wechat.WXPay;
@@ -225,6 +226,7 @@ public class WXPayServiceImpl implements WXPayService {
         if (StringUtils.isEmpty(dto.getAppid())) {
             dto.setAppid(myWXPayConfig.getAppID());
         }
+        dto.setNotify_url(WechatURLUtil.BASE_HOST + myWXPayConfig.getNotify_url());
         dto.setDevice_info(deviceInfo);
         dto.setTrade_type(tradeType);
         dto.setNonce_str(WXPayUtil.generateNonceStr());
@@ -282,7 +284,7 @@ public class WXPayServiceImpl implements WXPayService {
         if (StringUtils.isEmpty(dto.getAppid())) {
             dto.setAppid(myWXPayConfig.getAppID());
         }
-        dto.setNotify_url(myWXPayConfig.getRefund_notify_url());
+        dto.setNotify_url(WechatURLUtil.BASE_HOST + myWXPayConfig.getRefund_notify_url());
         dto.setNonce_str(WXPayUtil.generateNonceStr());
         dto.setOut_trade_no(orderNum);
         dto.setOut_refund_no("refund_" + orderNum);

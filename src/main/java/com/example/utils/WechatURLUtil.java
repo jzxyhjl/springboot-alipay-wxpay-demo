@@ -5,7 +5,7 @@ import java.net.URLEncoder;
 
 public class WechatURLUtil {
 
-
+    public final static String BASE_HOST = "http://www.xxx.com";
     public final static String SCOPE_BASE = "snsapi_base";
     public final static String SCOPE_USERINFO = "snsapi_userinfo";
 
