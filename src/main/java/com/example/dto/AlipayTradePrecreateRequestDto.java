@@ -1,14 +1,17 @@
 package com.example.dto;
 
-import com.simba.cloud.dto.data.AlipayBusinessParamsData;
-import com.simba.cloud.dto.data.AlipayExtendParamsData;
-import com.simba.cloud.dto.data.AlipayGoodsDetailData;
-import com.simba.cloud.dto.data.AlipaySettleInfoData;
+import com.example.dto.data.AlipayBusinessParamsData;
+import com.example.dto.data.AlipayExtendParamsData;
+import com.example.dto.data.AlipayGoodsDetailData;
+import com.example.dto.data.AlipaySettleInfoData;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * 支付宝预支付订单的封装对象
+ */
 @Data
 public class AlipayTradePrecreateRequestDto {
     /**

@@ -1,8 +1,6 @@
 package com.example.controller;
 
-import com.example.constant.AlipayNotifyResponseEnum;
 import com.example.controller.common.BaseResponse;
-import com.example.dto.AlipayNotifyDto;
 import com.example.dto.OrderDto;
 import com.example.servcie.AlipayService;
 import com.example.servcie.OrderService;
@@ -43,12 +41,5 @@ public class AlipayController {
         return "alipayPrecreate";
     }
 
-    @GetMapping("/callback")
-    @ResponseBody
-    public String callbackAlipay(AlipayNotifyDto dto) {
-        log.info("支付完成回调的通知：" + dto);
-        // TODO 修改订单状态
 
-        return AlipayNotifyResponseEnum.SUCCESS.getResult();
-    }
 }

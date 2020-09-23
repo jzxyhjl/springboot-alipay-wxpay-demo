@@ -70,36 +70,4 @@ public class HttpsUtil {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		try {
-			JSONObject obj = new JSONObject();
-			JSONObject obj1 = new JSONObject();
-			try {
-				obj.put("platform_type", "CUNT");
-				obj1.put("password", "dce3f0c9f7c73cc09b1e88355f30cc82");
-				obj1.put("username", "simba");
-				obj.put("request_data", obj1);
-				obj.put("ret_type", "json");
-				obj.put("serial_number", "20180520131400999BRAND1234567");
-				obj.put("service_name", "verify.login");
-				obj.put("timestamp", "2018-05-20 13:14:00");
-				obj.put("token", "String");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			HttpsUtil HttpsUtil=new HttpsUtil();
-
-			String str = HttpsUtil.post("https://testrnr.cu-sc.com/esb/json", obj.toString());
-			System.out.println(str);
-		} catch (KeyManagementException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }

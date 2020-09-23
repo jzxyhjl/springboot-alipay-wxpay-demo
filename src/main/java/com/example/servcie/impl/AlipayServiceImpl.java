@@ -5,7 +5,7 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
-import com.example.config.SimbaAlipayConfig;
+import com.example.config.MyAlipayConfig;
 import com.example.dto.AlipayTradePrecreateRequestDto;
 import com.example.servcie.AlipayService;
 import com.example.utils.JSONUtil;
@@ -22,19 +22,19 @@ import java.math.RoundingMode;
 public class AlipayServiceImpl implements AlipayService {
 
     @Autowired
-    private SimbaAlipayConfig simbaAlipayConfig;
+    private MyAlipayConfig myAlipayConfig;
 
     @Override
     public String tradePrecreate(String orderNum, Integer totalFee, String productName) throws AlipayApiException {
-        AlipayClient alipayClient = new DefaultAlipayClient(simbaAlipayConfig.getGateway_url(),
-                simbaAlipayConfig.getApp_id(),
-                simbaAlipayConfig.getApp_private_key(),
-                simbaAlipayConfig.getFormat(),
-                simbaAlipayConfig.getCharset(),
-                simbaAlipayConfig.getAlipay_public_key(),
-                simbaAlipayConfig.getSign_type());
+        AlipayClient alipayClient = new DefaultAlipayClient(myAlipayConfig.getGateway_url(),
+                myAlipayConfig.getApp_id(),
+                myAlipayConfig.getApp_private_key(),
+                myAlipayConfig.getFormat(),
+                myAlipayConfig.getCharset(),
+                myAlipayConfig.getAlipay_public_key(),
+                myAlipayConfig.getSign_type());
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
-        request.setNotifyUrl(PaymentRequestUtil.BASE_HOST + simbaAlipayConfig.getNotify_url());
+        request.setNotifyUrl(PaymentRequestUtil.BASE_HOST + myAlipayConfig.getNotify_url());
         // 构建参数
         AlipayTradePrecreateRequestDto dto = generateAlipayCommonRequestDto(orderNum, totalFee, productName);
         request.setBizContent(JSONUtil.beanToJson(dto, AlipayTradePrecreateRequestDto.class));

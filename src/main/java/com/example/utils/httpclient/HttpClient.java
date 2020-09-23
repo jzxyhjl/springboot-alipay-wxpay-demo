@@ -21,7 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 自定义的http请求工具
+ */
 @Component
 public class HttpClient {
 

@@ -11,9 +11,12 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * 微信支付的配置文件
+ */
 @Data
 @Component
-public class SimbaWXPayConfig extends WXPayConfig {
+public class MyWXPayConfig extends WXPayConfig {
 
     /**
      * 公众号ID	appid	是	String(32)	wx82be59064cc2d865	微信支付分配的公众账号ID（企业号corpid即为此appId）

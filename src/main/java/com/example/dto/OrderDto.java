@@ -20,4 +20,6 @@ public class OrderDto implements Serializable {
 
     @NotNull(message = "订单总金额不能为空")
     private Integer totalFee;
+
+    private String source;
 }

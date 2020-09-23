@@ -4,9 +4,12 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * 支付宝的配置文件
+ */
 @Data
 @Component
-public class SimbaAlipayConfig {
+public class MyAlipayConfig {
 
     @Value("${base.payment.alipay.appid}")
     private String app_id;
@@ -21,7 +24,6 @@ public class SimbaAlipayConfig {
     private String notify_url;
 
     private String gateway_url = "https://openapi.alipay.com/gateway.do";
-//    private String gateway_url = "https://openapi.alipaydev.com/gateway.do";
 
     private String format = "json";
 

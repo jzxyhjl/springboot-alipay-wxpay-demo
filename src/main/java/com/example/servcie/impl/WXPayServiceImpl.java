@@ -1,6 +1,6 @@
 package com.example.servcie.impl;
 
-import com.example.config.SimbaWXPayConfig;
+import com.example.config.MyWXPayConfig;
 import com.example.constant.BooleanEnum;
 import com.example.dto.WXPayRefundRequestDto;
 import com.example.dto.WXPayRefundResponseDto;
@@ -30,7 +30,7 @@ import java.util.Map;
 public class WXPayServiceImpl implements WXPayService {
 
     @Autowired
-    private SimbaWXPayConfig simbaWXPayConfig;
+    private MyWXPayConfig myWXPayConfig;
     @Autowired
     private HttpClient httpClient;
 
@@ -50,7 +50,7 @@ public class WXPayServiceImpl implements WXPayService {
         WXPayUnifiedOrderRequestDto dto = generateWXPayUnifiedOrderRequestDtoForH5(orderNum, productName, totalFee, productNum, ip);
         log.info("微信支付H5请求参数：" + dto.toString());
         // 发起统一下单请求
-        WXPay wxPay = new WXPay(simbaWXPayConfig);
+        WXPay wxPay = new WXPay(myWXPayConfig);
         Map<String, String> result = wxPay.unifiedOrder(BeanMapUtil.beanToMap(dto));
         log.info("微信支付H5请求结果：" + result.toString());
         WXPayUnifiedOrderResponseDto resultDto = BeanMapUtil.mapToBean(result, WXPayUnifiedOrderResponseDto.class);
@@ -97,7 +97,7 @@ public class WXPayServiceImpl implements WXPayService {
         WXPayUnifiedOrderRequestDto dto = generateWXPayUnifiedOrderRequestDtoForNative(orderNum, productName, totalFee, productNum, ip);
         log.info("微信支付Native请求参数：" + dto.toString());
         // 发起统一下单请求
-        WXPay wxPay = new WXPay(simbaWXPayConfig);
+        WXPay wxPay = new WXPay(myWXPayConfig);
         Map<String, String> result = wxPay.unifiedOrder(BeanMapUtil.beanToMap(dto));
         log.info("微信支付Native请求结果：" + result.toString());
         WXPayUnifiedOrderResponseDto resultDto = BeanMapUtil.mapToBean(result, WXPayUnifiedOrderResponseDto.class);
@@ -145,7 +145,7 @@ public class WXPayServiceImpl implements WXPayService {
         WXPayUnifiedOrderRequestDto dto = generateWXPayUnifiedOrderRequestDtoForJSAPI(orderNum, productName, totalFee, code, ip);
         log.info("微信支付JSAPI请求参数：" + dto.toString());
         // 发起统一下单请求
-        WXPay wxPay = new WXPay(simbaWXPayConfig);
+        WXPay wxPay = new WXPay(myWXPayConfig);
         Map<String, String> result = wxPay.unifiedOrder(BeanMapUtil.beanToMap(dto));
         log.info("微信支付JSAPI请求结果：" + result.toString());
         WXPayUnifiedOrderResponseDto resultDto = BeanMapUtil.mapToBean(result, WXPayUnifiedOrderResponseDto.class);
@@ -157,7 +157,7 @@ public class WXPayServiceImpl implements WXPayService {
             jsapiMap.put("nonceStr", result.get("nonce_str"));
             jsapiMap.put("package", "prepay_id=" + result.get("prepay_id"));
             jsapiMap.put("signType", WXPayConstants.HMACSHA256);
-            jsapiMap.put("paySign", WXPayUtil.generateSignature(jsapiMap, simbaWXPayConfig.getApikey(), WXPayConstants.SignType.HMACSHA256));
+            jsapiMap.put("paySign", WXPayUtil.generateSignature(jsapiMap, myWXPayConfig.getApikey(), WXPayConstants.SignType.HMACSHA256));
             log.info("微信支付JSAPI微信内H5调起支付：" + jsapiMap);
         } else {
             if (resultDto != null && StringUtils.hasText(resultDto.getErr_code())) {
@@ -188,8 +188,8 @@ public class WXPayServiceImpl implements WXPayService {
      */
     private String getOpenId(String code) throws Exception {
         if (!StringUtils.isEmpty(code)) {
-            String authAccessTokenURL = WechatURLUtil.getAuthAccessTokenURL(simbaWXPayConfig.getAppID(), simbaWXPayConfig.getAppsecret(), code);
-            WXPayRequest wxPayRequest = new WXPayRequest(simbaWXPayConfig);
+            String authAccessTokenURL = WechatURLUtil.getAuthAccessTokenURL(myWXPayConfig.getAppID(), myWXPayConfig.getAppsecret(), code);
+            WXPayRequest wxPayRequest = new WXPayRequest(myWXPayConfig);
             String authAccessTokenResponse = httpClient.doGet(authAccessTokenURL);
             /*
                 由于微信的部分返回值，有时为int有时为String，
@@ -221,9 +221,9 @@ public class WXPayServiceImpl implements WXPayService {
         // 先补全dto
         WXPayUnifiedOrderRequestDto dto = new WXPayUnifiedOrderRequestDto();
 
-        BeanUtils.copyProperties(simbaWXPayConfig, dto);
+        BeanUtils.copyProperties(myWXPayConfig, dto);
         if (StringUtils.isEmpty(dto.getAppid())) {
-            dto.setAppid(simbaWXPayConfig.getAppID());
+            dto.setAppid(myWXPayConfig.getAppID());
         }
         dto.setDevice_info(deviceInfo);
         dto.setTrade_type(tradeType);
@@ -239,7 +239,7 @@ public class WXPayServiceImpl implements WXPayService {
             dto.setOpenid(openId);
         }
 
-        dto.setSign(WXPayUtil.generateSignature(BeanMapUtil.beanToMap(dto), simbaWXPayConfig.getApikey()));
+        dto.setSign(WXPayUtil.generateSignature(BeanMapUtil.beanToMap(dto), myWXPayConfig.getApikey()));
         return dto;
     }
 
@@ -255,7 +255,7 @@ public class WXPayServiceImpl implements WXPayService {
         // 准备退款参数
         WXPayRefundRequestDto dto = generateWXPayRefundRequestDto(orderNum, totalFee);
         log.info("申请退款参数：" + dto);
-        WXPay wxPayt = new WXPay(simbaWXPayConfig);
+        WXPay wxPayt = new WXPay(myWXPayConfig);
         Map<String, String> result = wxPayt.refund(BeanMapUtil.beanToMap(dto));
         log.info("申请退款结果：" + result);
         WXPayRefundResponseDto resultDto = BeanMapUtil.mapToBean(result, WXPayRefundResponseDto.class);
@@ -278,17 +278,17 @@ public class WXPayServiceImpl implements WXPayService {
      */
     private WXPayRefundRequestDto generateWXPayRefundRequestDto(String orderNum, Integer totalFee) throws Exception {
         WXPayRefundRequestDto dto = new WXPayRefundRequestDto();
-        BeanUtils.copyProperties(simbaWXPayConfig, dto);
+        BeanUtils.copyProperties(myWXPayConfig, dto);
         if (StringUtils.isEmpty(dto.getAppid())) {
-            dto.setAppid(simbaWXPayConfig.getAppID());
+            dto.setAppid(myWXPayConfig.getAppID());
         }
-        dto.setNotify_url(simbaWXPayConfig.getRefund_notify_url());
+        dto.setNotify_url(myWXPayConfig.getRefund_notify_url());
         dto.setNonce_str(WXPayUtil.generateNonceStr());
         dto.setOut_trade_no(orderNum);
         dto.setOut_refund_no("refund_" + orderNum);
         dto.setTotal_fee(totalFee);
         dto.setRefund_fee(totalFee);
-        dto.setSign(WXPayUtil.generateSignature(BeanMapUtil.beanToMap(dto), simbaWXPayConfig.getApikey()));
+        dto.setSign(WXPayUtil.generateSignature(BeanMapUtil.beanToMap(dto), myWXPayConfig.getApikey()));
         return dto;
     }
 

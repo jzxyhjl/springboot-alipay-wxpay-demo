@@ -14,7 +14,7 @@ import java.io.InputStream;
 @Slf4j
 public class PaymentRequestUtil {
 
-	public final static String BASE_HOST = "http://uat-simbaui.simbalink.cn";
+	public final static String BASE_HOST = "http://www.xxx.com";
 	private final static String WECHAT_UA_LOWER = "micromessenger";
 	private final static String ALIPAY_UA_LOWER = "alipayclient";
 
