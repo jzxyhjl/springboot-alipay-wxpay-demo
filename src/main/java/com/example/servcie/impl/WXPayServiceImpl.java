@@ -10,7 +10,6 @@ import com.example.exception.PaymentException;
 import com.example.servcie.WXPayService;
 import com.example.utils.BeanMapUtil;
 import com.example.utils.JSONUtil;
-import com.example.utils.PaymentRequestUtil;
 import com.example.utils.WechatURLUtil;
 import com.example.utils.httpclient.HttpClient;
 import com.example.utils.wechat.WXPay;
