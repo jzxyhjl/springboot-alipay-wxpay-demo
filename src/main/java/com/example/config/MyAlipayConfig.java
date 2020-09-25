@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyAlipayConfig {
 
+    @Value("${base.payment.alipay.host}")
+    private String host;
+
     @Value("${base.payment.alipay.appid}")
     private String app_id;
 

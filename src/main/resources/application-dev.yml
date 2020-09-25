@@ -8,6 +8,7 @@ base:
       appsecret: # 公众号或者小程序的secret，用于jsapi获取openid的
       mch_id: # 微信支付商户号
       apikey: # 商户自己设定的密钥，账户中心—>API安全—>API密钥
+      host: https://payment.com # 微信支付的主机名
       notify_url: /payment/wxpay/callback/notify
       refund_notify_url: /payment/wxpay/callback/refund
       auth_callback_url: /payment/wxpay/callback/authcode
@@ -15,4 +16,5 @@ base:
       appid: # 支付宝创建的应用id，创建的应用一定要与支付宝账户绑定才可以用
       app_private_key: # 应用的私钥，通过支付宝密钥工具生成
       alipay_public_key: # 支付宝公钥，填入应用公钥后，支付宝返回的
+      host: https://payment.com # 支付宝的主机名
       notify_url: /payment/alipay/callback/notify

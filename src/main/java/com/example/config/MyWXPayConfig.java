@@ -18,6 +18,8 @@ import java.io.InputStream;
 @Component
 public class MyWXPayConfig extends WXPayConfig {
 
+    @Value("${base.payment.wxpay.host}")
+    private String host;
     /**
      * 公众号ID	appid	是	String(32)	wx82be59064cc2d865	微信支付分配的公众账号ID（企业号corpid即为此appId）
      */

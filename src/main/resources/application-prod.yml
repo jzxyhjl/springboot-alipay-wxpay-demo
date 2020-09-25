@@ -5,6 +5,7 @@ base:
       appsecret: ${WECHAT_SECRET}
       mch_id: ${WECHAT_MCH_ID}
       apikey: ${WECHAT_APIKEY}
+      host: ${PAYMENT_HOST}
       notify_url: ${WECHAT_NOTIFY_URL}
       refund_notify_url: ${WECHAT_REFUND_NOTIFY_URL}
       auth_callback_url: ${WECHAT_AUTH_CALLBACK_URL}
@@ -12,4 +13,5 @@ base:
       appid: ${ALIPAY_APPID}
       app_private_key: ${ALIPAY_APP_PRIVATE_KEY}
       alipay_public_key: ${ALIPAY_PUBLIC_KEY}
+      host: ${PAYMENT_HOST}
       notify_url: ${ALIPAY_NOTIFY_URL}
